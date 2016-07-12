@@ -1,2 +1,3 @@
 # NES_Emulator
-Emulator attempt of the Nintendo Entertainment System
+Attempt to emulate the Nintendo Entertainment System
+For learning purposes only.
