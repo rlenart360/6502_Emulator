@@ -5,6 +5,7 @@ class Disassembler(object):
     def process_hex(self, rom_hex):
         print(rom_hex)
 
+        # Loop that will process the ROM
         i = 0
         while i < (len(rom_hex)):
 
@@ -33,7 +34,6 @@ class Disassembler(object):
                 print('ADC '+'#$'+hex(rom_hex[i+1])[2:])
                 i+=1
 
-            # ADC
             elif (rom_hex[i] == 101):
                 print('ADC '+'$'+hex(rom_hex[i+1])[2:])
                 i+=1
@@ -61,5 +61,28 @@ class Disassembler(object):
             elif (rom_hex[i] == 113):
                 print('ADC ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
                 i+=1
+
+            # AND (Bitwise AND with Accumulator)
+            elif (rom_hex[i] == 41):
+                print('AND ' + '#$' + hex(rom_hex[i+1])[2:])
+                i+=1
+
+            elif (rom_hex[i] == 37):
+                print('AND ' + '$' + hex(rom_hex[i + 1])[2:])
+                i += 1
+
+            elif (rom_hex[i] == 53):
+                print('AND ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
+                i += 1
+
+            elif (rom_hex[i] == 45):
+                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                i += 2
+
+            elif (rom_hex[i] == 61):
+                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                i += 2
+
+            #TODO: Keep working on the Disaasembler
 
             i += 1
