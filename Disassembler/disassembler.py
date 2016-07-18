@@ -16,8 +16,8 @@ class Disassembler(object):
 
             # ORA (Bitwise OR with Accumulator), MODE: Indirect, X, LENGTH: 2 bytes
             elif (rom_hex[i] == 1):
-                print('ORA ' +'($' +hex(rom_hex[i+1])[2:] + ',X)')
-                i+=1
+                print('ORA ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
+                i += 1
 
             # SEI (Set Interrupt), Processor Status Intruction
             elif (rom_hex[i] == 120):
@@ -29,41 +29,41 @@ class Disassembler(object):
 
             # ADC (Add with Carry)
             elif (rom_hex[i] == 105):
-                print('ADC '+'#$'+hex(rom_hex[i+1])[2:])
-                i+=1
+                print('ADC ' + '#$' + hex(rom_hex[i + 1])[2:])
+                i += 1
 
             elif (rom_hex[i] == 101):
-                print('ADC '+'$'+hex(rom_hex[i+1])[2:])
-                i+=1
+                print('ADC ' + '$' + hex(rom_hex[i + 1])[2:])
+                i += 1
 
             elif (rom_hex[i] == 117):
-                print('ADC '+'$'+hex(rom_hex[i+1])[2:]+',X')
-                i+=1
+                print('ADC ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
+                i += 1
 
             elif (rom_hex[i] == 109):
-                print('ADC '+'$'+hex(rom_hex[i+2])[2:]+hex(rom_hex[i+1])[2:])
-                i+=2
+                print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                i += 2
 
             elif (rom_hex[i] == 125):
-                print('ADC '+'$'+hex(rom_hex[i+2])[2:]+hex(rom_hex[i+1])[2:]+',X')
-                i+=2
+                print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                i += 2
 
             elif (rom_hex[i] == 121):
                 print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',Y')
-                i+=2
+                i += 2
 
             elif (rom_hex[i] == 97):
                 print('ADC ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
-                i+=1
+                i += 1
 
             elif (rom_hex[i] == 113):
                 print('ADC ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
-                i+=1
+                i += 1
 
             # AND (Bitwise AND with Accumulator)
             elif (rom_hex[i] == 41):
-                print('AND ' + '#$' + hex(rom_hex[i+1])[2:])
-                i+=1
+                print('AND ' + '#$' + hex(rom_hex[i + 1])[2:])
+                i += 1
 
             elif (rom_hex[i] == 37):
                 print('AND ' + '$' + hex(rom_hex[i + 1])[2:])
@@ -81,6 +81,6 @@ class Disassembler(object):
                 print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 2
 
-            #TODO: Keep working on the Disaasembler!
+            # TODO: Keep working on the Disaasembler
 
             i += 1
