@@ -19,5 +19,7 @@ def main():
     cpu.process_instruction(lines[0][0:2])
 
 
+#this is a test
+
 if __name__ == '__main__':
     main()
