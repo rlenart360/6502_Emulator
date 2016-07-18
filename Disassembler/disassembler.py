@@ -9,8 +9,6 @@ class Disassembler(object):
         i = 0
         while i < (len(rom_hex)):
 
-            current_byte = rom_hex[i]
-
             # LSR (Logical Shift Right), MODE: Absolute, LENGTH: 3 bytes
             if (rom_hex[i] == 78):
                 print('LSR ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
