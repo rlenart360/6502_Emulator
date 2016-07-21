@@ -80,6 +80,18 @@ class Disassembler(object):
             elif (rom_hex[i] == 61):
                 print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 2
+                
+             elif (rom_hex[i] == 57):
+                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',Y')
+                i += 2
+                
+             elif (rom_hex[i] == 33):
+                print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
+                i += 1
+                
+            elif (rom_hex[i] == 49):
+                print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
+                i += 1
 
             # TODO: Keep working on the Disaasembler
 
