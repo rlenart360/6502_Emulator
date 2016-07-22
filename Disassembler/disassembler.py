@@ -98,19 +98,28 @@ class Disassembler(object):
                 print('ASL A')
                 
             elif (rom_hex[i] == 6):
-                print('ASL ' + hex(rom_hex[i + 1])[2:])
+                print('ASL ' + '$' + hex(rom_hex[i + 1])[2:])
                 i += 1
                 
             elif (rom_hex[i] == 22):
-                print('ASL ' + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ASL ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 1
                 
             elif (rom_hex[i] == 14):
-                print('ASL ' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
                 i += 2
                 
             elif (rom_hex[i] == 30):
-                print('ASL ' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                i += 2
+                
+            # BIT (Test BITs)
+            elif (rom_hex[i] == 36):
+                print('BIT ' + '$' + hex(rom_hex[i + 1])[2:])
+                i += 1
+                
+            elif (rom_hex[i] == 44):
+                print('BIT ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
                 i += 2
 
             # TODO: Keep working on the Disaasembler
