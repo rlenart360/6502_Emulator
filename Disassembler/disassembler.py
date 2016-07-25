@@ -19,11 +19,11 @@ class Disassembler(object):
                 print('ORA ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
                 i += 1
 
-            # SEI (Set Interrupt), Processor Status Intruction
+            # SEI (Set Interrupt), Processor Status Instruction
             elif (rom_hex[i] == 120):
                 print('SEI')
 
-            # CLD (Clear Decimal), Processor Status Intruction
+            # CLD (Clear Decimal), Processor Status Instruction
             elif (rom_hex[i] == 216):
                 print('CLD')
 
@@ -80,48 +80,48 @@ class Disassembler(object):
             elif (rom_hex[i] == 61):
                 print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 2
-                
-             elif (rom_hex[i] == 57):
+
+            elif (rom_hex[i] == 57):
                 print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',Y')
                 i += 2
-                
-             elif (rom_hex[i] == 33):
+
+            elif (rom_hex[i] == 33):
                 print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
                 i += 1
-                
+
             elif (rom_hex[i] == 49):
                 print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
                 i += 1
-            
+
             # ASL (Arithmetic Shift Left)
             elif (rom_hex[i] == 10):
                 print('ASL A')
-                
+
             elif (rom_hex[i] == 6):
                 print('ASL ' + '$' + hex(rom_hex[i + 1])[2:])
                 i += 1
-                
+
             elif (rom_hex[i] == 22):
                 print('ASL ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 1
-                
+
             elif (rom_hex[i] == 14):
                 print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
                 i += 2
-                
+
             elif (rom_hex[i] == 30):
                 print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
                 i += 2
-                
+
             # BIT (Test BITs)
             elif (rom_hex[i] == 36):
                 print('BIT ' + '$' + hex(rom_hex[i + 1])[2:])
                 i += 1
-                
+
             elif (rom_hex[i] == 44):
                 print('BIT ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
                 i += 2
 
-            # TODO: Keep working on the Disaasembler
+            # TODO: Keep working on the Disassembler
 
             i += 1
