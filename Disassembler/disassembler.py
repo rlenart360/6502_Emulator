@@ -1,9 +1,12 @@
+from print_bytes import print_bytes
+
 class Disassembler(object):
     def __init__(self):
         pass
 
     def process_hex(self, rom_hex):
         print(rom_hex)
+        print_bytes(10)
 
         # Loop that will process the ROM
         i = 0
@@ -11,12 +14,12 @@ class Disassembler(object):
 
             # LSR (Logical Shift Right), MODE: Absolute, LENGTH: 3 bytes
             if (rom_hex[i] == 78):
-                print('LSR ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('LSR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
 
             # ORA (Bitwise OR with Accumulator), MODE: Indirect, X, LENGTH: 2 bytes
             elif (rom_hex[i] == 1):
-                print('ORA ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
+                print('ORA ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
                 i += 1
 
             # SEI (Set Interrupt), Processor Status Instruction
@@ -29,68 +32,68 @@ class Disassembler(object):
 
             # ADC (Add with Carry)
             elif (rom_hex[i] == 105):
-                print('ADC ' + '#$' + hex(rom_hex[i + 1])[2:])
+                print('ADC ' + '#$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 101):
-                print('ADC ' + '$' + hex(rom_hex[i + 1])[2:])
+                print('ADC ' + '$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 117):
-                print('ADC ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ADC ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 1
 
             elif (rom_hex[i] == 109):
-                print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('ADC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
 
             elif (rom_hex[i] == 125):
-                print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ADC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 2
 
             elif (rom_hex[i] == 121):
-                print('ADC ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',Y')
+                print('ADC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
                 i += 2
 
             elif (rom_hex[i] == 97):
-                print('ADC ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
+                print('ADC ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
                 i += 1
 
             elif (rom_hex[i] == 113):
-                print('ADC ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
+                print('ADC ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
                 i += 1
 
             # AND (Bitwise AND with Accumulator)
             elif (rom_hex[i] == 41):
-                print('AND ' + '#$' + hex(rom_hex[i + 1])[2:])
+                print('AND ' + '#$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 37):
-                print('AND ' + '$' + hex(rom_hex[i + 1])[2:])
+                print('AND ' + '$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 53):
-                print('AND ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
+                print('AND ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 1
 
             elif (rom_hex[i] == 45):
-                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('AND ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
 
             elif (rom_hex[i] == 61):
-                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                print('AND ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 2
 
             elif (rom_hex[i] == 57):
-                print('AND ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',Y')
+                print('AND ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
                 i += 2
 
             elif (rom_hex[i] == 33):
-                print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + ',X)')
+                print('AND ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
                 i += 1
 
             elif (rom_hex[i] == 49):
-                print('AND ' + '($' + hex(rom_hex[i + 1])[2:] + '),Y')
+                print('AND ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
                 i += 1
 
             # ASL (Arithmetic Shift Left)
@@ -98,29 +101,46 @@ class Disassembler(object):
                 print('ASL A')
 
             elif (rom_hex[i] == 6):
-                print('ASL ' + '$' + hex(rom_hex[i + 1])[2:])
+                print('ASL ' + '$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 22):
-                print('ASL ' + '$' + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ASL ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 1
 
             elif (rom_hex[i] == 14):
-                print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('ASL ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
 
             elif (rom_hex[i] == 30):
-                print('ASL ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:] + ',X')
+                print('ASL ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
                 i += 2
 
             # BIT (Test BITs)
             elif (rom_hex[i] == 36):
-                print('BIT ' + '$' + hex(rom_hex[i + 1])[2:])
+                print('BIT ' + '$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
             elif (rom_hex[i] == 44):
-                print('BIT ' + '$' + hex(rom_hex[i + 2])[2:] + hex(rom_hex[i + 1])[2:])
+                print('BIT ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
+                
+            # Branch Instructions
+            
+            # BPL (Branch on PLus)
+            elif (rom_hex[i] == 16):
+            	print('BPL ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+                
+            # BMI (Branch on MInus)
+            elif (rom_hex[i] == 48):
+            	print('BMI ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+                
+            # BVC (Branch on oVerflow Clear)
+            elif (rom_hex[i] == 80):
+            	print('BVC ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
 
             # TODO: Keep working on the Disassembler
 
