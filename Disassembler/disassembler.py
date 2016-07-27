@@ -8,29 +8,14 @@ class Disassembler(object):
         print(rom_hex)
         
         # Loop that will process the ROM
+        
+        # TODO: Find out where the actual game starts in the ROM and set *i* accordingly
+        
         i = 0
         while i < (len(rom_hex)):
 
-            # LSR (Logical Shift Right), MODE: Absolute, LENGTH: 3 bytes
-            if (rom_hex[i] == 78):
-                print('LSR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
-                i += 2
-
-            # ORA (Bitwise OR with Accumulator), MODE: Indirect, X, LENGTH: 2 bytes
-            elif (rom_hex[i] == 1):
-                print('ORA ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
-                i += 1
-
-            # SEI (Set Interrupt), Processor Status Instruction
-            elif (rom_hex[i] == 120):
-                print('SEI')
-
-            # CLD (Clear Decimal), Processor Status Instruction
-            elif (rom_hex[i] == 216):
-                print('CLD')
-
             # ADC (Add with Carry)
-            elif (rom_hex[i] == 105):
+            if (rom_hex[i] == 105):
                 print('ADC ' + '#$' + print_bytes(rom_hex[i + 1]))
                 i += 1
 
@@ -230,32 +215,212 @@ class Disassembler(object):
             	i += 2
             
             # DEC (Decrement Memory)
+            elif (rom_hex[i] == 198):
+            	print('DEC ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 214):
+            	print('DEC ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 206):
+            	print('DEC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 222):
+            	print('DEC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
             
             # EOR (Bitwise Exclusive OR)
+            elif (rom_hex[i] == 73):
+            	print('EOR ' + '#$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 69):
+            	print('EOR ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 85):
+            	print('EOR ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 77):
+            	print('EOR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 93):
+            	print('EOR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
+            	
+            elif (rom_hex[i] == 89):
+            	print('EOR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+            	i += 2
+            	
+            elif (rom_hex[i] == 65):
+            	print('EOR ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
+            	i += 1
+            	
+            elif (rom_hex[i] == 81):
+            	print('EOR ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
+            	i += 1
             
             # CLC (Clear Carry)
+            elif (rom_hex[i] == 24):
+            	print('CLC')
+            	
             # SEC (Set Carry)
+            elif (rom_hex[i] == 56):
+            	print('SEC')
+            	
             # CLI (Clear Interrupt)
+            elif (rom_hex[i] == 88):
+            	print('CLI')
+            	
             # SEI (Set Interrupt)
+            elif (rom_hex[i] == 120):
+            	print('SEI')
+            	
             # CLV (Clear Overflow)
+            elif (rom_hex[i] == 184):
+            	print('CLV')
+            	
             # CLD (Clear Decimal)
+            elif (rom_hex[i] == 216):
+            	print('CLD')
+            	
             # SED (Set Decimal)
+            elif (rom_hex[i] == 248):
+            	print('SED')
             
             # INC (Increment Memory)
+            elif (rom_hex[i] == 230):
+            	print('INC ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 246):
+            	print('INC ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 238):
+            	print('INC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 254):
+            	print('INC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
             
             # JMP (Jump)
+            elif (rom_hex[i] == 76):
+            	print('JMP ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 108):
+            	print('JMP ' + '($' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ')')
+            	i += 2
             
             # JSR (Jump to Subroutine)
+            elif (rom_hex[i] == 32):
+            	print('JSR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
             
             # LDA (Load Accumulator)
+            elif (rom_hex[i] == 169):
+            	print('LDA ' + '#$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 165):
+            	print('LDA ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 181):
+            	print('LDA ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 173):
+            	print('LDA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 189):
+            	print('LDA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
+            	
+            elif (rom_hex[i] == 185):
+            	print('LDA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+            	i += 2
+            	
+            elif (rom_hex[i] == 161):
+            	print('LDA ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
+            	i += 1
+            	
+            elif (rom_hex[i] == 177):
+            	print('LDA ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
+            	i += 1
             
             # LDX (Load X Register)
+            elif (rom_hex[i] == 162):
+            	print('LDX ' + '#$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 166):
+            	print('LDX ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 182):
+            	print('LDX ' + '$' + print_bytes(rom_hex[i + 1]) + ',Y')
+            	i += 1
+            	
+            elif (rom_hex[i] == 174):
+            	print('LDX ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 190):
+            	print('LDX ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+            	i += 2
             
             # LDY (Load Y Register)
+            elif (rom_hex[i] == 160):
+            	print('LDY ' + '#$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 164):
+            	print('LDY ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 180):
+            	print('LDY ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 172):
+            	print('LDY ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 188):
+            	print('LDY ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
             
             # LSR (Logical Shift Right)
+            elif (rom_hex[i] == 74):
+            	print('LSR A')
+            	
+            elif (rom_hex[i] == 70):
+            	print('LSR ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 86):
+            	print('LSR ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 78):
+            	print('LSR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 94):
+            	print('LSR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
             
             # NOP (No Operation)
+            elif (rom_hex[i] == 234):
+            	print('NOP')
             
             # ORA (Bitwise OR with Accumulator)
             
