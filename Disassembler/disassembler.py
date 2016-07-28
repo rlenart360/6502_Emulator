@@ -5,7 +5,7 @@ class Disassembler(object):
         pass
 
     def process_hex(self, rom_hex):
-        print(rom_hex)
+        #print(rom_hex)
         
         # Loop that will process the ROM
         
@@ -423,38 +423,229 @@ class Disassembler(object):
             	print('NOP')
             
             # ORA (Bitwise OR with Accumulator)
+            elif (rom_hex[i] == 9):
+            	print('ORA ' + '#$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 5):
+            	print('ORA ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 21):
+            	print('ORA ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 13):
+            	print('ORA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 29):
+            	print('ORA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
+            	
+            elif (rom_hex[i] == 25):
+            	print('ORA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+            	i += 2
+            	
+            elif (rom_hex[i] == 1):
+            	print('ORA ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
+            	i += 1
+            	
+            elif (rom_hex[i] == 17):
+            	print('ORA ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
+            	i += 1
             
             # TAX (Transfer A to X)
+            elif (rom_hex[i] == 170):
+            	print('TAX')
+            	
             # TXA (Transfer X to A)
+            elif (rom_hex[i] == 138):
+            	print('TXA')
+            	
             # DEX (Decrement X)
+            elif (rom_hex[i] == 202):
+            	print('DEX')
+            	
             # INX (Increment X)
+            elif (rom_hex[i] == 232):
+            	print('INX')
+            	
             # TAY (Transfer A to Y)
+            elif (rom_hex[i] == 168):
+            	print('TAY')
+            	
             # TYA (Transfer Y to A)
+            elif (rom_hex[i] == 152):
+            	print('TYA')
+            	
             # DEY (Decrement Y)
+            elif (rom_hex[i] == 136):
+            	print('DEY')
+            	
             # INY (Increment Y)
+            elif (rom_hex[i] == 200):
+            	print('INY')
             
             # ROL (Rotate Left)
+            elif (rom_hex[i] == 42):
+            	print('ROL A')
+            	
+            elif (rom_hex[i] == 38):
+            	print('ROL ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 54):
+            	print('ROL ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 46):
+            	print('ROL ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 62):
+            	print('ROL ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
+            
             
             # ROR (Rotate Right)
+            elif (rom_hex[i] == 106):
+            	print('ROR A')
+            	
+            elif (rom_hex[i] == 102):
+            	print('ROR ' + '$' + print_bytes(rom_hex[i + 1]))
+            	i += 1
+            	
+            elif (rom_hex[i] == 118):
+            	print('ROR ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 1
+            	
+            elif (rom_hex[i] == 110):
+            	print('ROR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+            	i += 2
+            	
+            elif (rom_hex[i] == 126):
+            	print('ROR ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+            	i += 2
             
             # RTI (Return from Interrupt)
+            elif (rom_hex[i] == 64):
+            	print('RTI')
             
             # RTS (Return from Subroutine)
+            elif (rom_hex[i] == 96):
+            	print('RTS')
             
             # SBC (Subtract with Carry)
+            elif (rom_hex[i] == 233):
+                print('SBC ' + '#$' + print_bytes(rom_hex[i + 1]))
+                i += 1
+
+            elif (rom_hex[i] == 229):
+                print('SBC ' + '$' + print_bytes(rom_hex[i + 1]))
+                i += 1
+
+            elif (rom_hex[i] == 245):
+                print('SBC ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+                i += 1
+
+            elif (rom_hex[i] == 237):
+                print('SBC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+                i += 2
+
+            elif (rom_hex[i] == 253):
+                print('SBC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+                i += 2
+
+            elif (rom_hex[i] == 249):
+                print('SBC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+                i += 2
+
+            elif (rom_hex[i] == 225):
+                print('SBC ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
+                i += 1
+
+            elif (rom_hex[i] == 241):
+                print('SBC ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
+                i += 1
             
             # STA (Store Accumulator)
+            elif (rom_hex[i] == 133):
+                print('STA ' + '$' + print_bytes(rom_hex[i + 1]))
+                i += 1
+
+            elif (rom_hex[i] == 149):
+                print('STA ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+                i += 1
+
+            elif (rom_hex[i] == 141):
+                print('STA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+                i += 2
+
+            elif (rom_hex[i] == 157):
+                print('STA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',X')
+                i += 2
+
+            elif (rom_hex[i] == 153):
+                print('STA ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]) + ',Y')
+                i += 2
+
+            elif (rom_hex[i] == 129):
+                print('STA ' + '($' + print_bytes(rom_hex[i + 1]) + ',X)')
+                i += 1
+
+            elif (rom_hex[i] == 145):
+                print('STA ' + '($' + print_bytes(rom_hex[i + 1]) + '),Y')
+                i += 1
             
             # TXS (Transfer X to Stack Ptr)
+            elif (rom_hex[i] == 154):
+            	print('TXS')
+            	
             # TSX (Transfer Stack Ptr to X)
+            elif (rom_hex[i] == 186):
+            	print('TSX')
+            	
             # PHA (Push Accumulator)
+            elif (rom_hex[i] == 72):
+            	print('PHA')
+            	
             # PLA (Pull Accumulator)
+            elif (rom_hex[i] == 104):
+            	print('PLA')
+            	
             # PHP (Push Processor Status)
+            elif (rom_hex[i] == 8):
+            	print('PHP')
+            	
             # PLP (Pull Processor Status)
+            elif (rom_hex[i] == 40):
+            	print('PLP')
             
             # STX (Store X Register)
+            elif (rom_hex[i] == 134):
+                print('STX ' + '$' + print_bytes(rom_hex[i + 1]))
+                i += 1
+                
+            elif (rom_hex[i] == 150):
+                print('STX ' + '$' + print_bytes(rom_hex[i + 1]) + ',Y')
+                i += 1
+                
+            elif (rom_hex[i] == 142):
+                print('STX ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+                i += 2
             
             # STY (Store Y Register)
-            # TODO: Keep working on the Disassembler
+            elif (rom_hex[i] == 132):
+                print('STY ' + '$' + print_bytes(rom_hex[i + 1]))
+                i += 1
+                
+            elif (rom_hex[i] == 148):
+                print('STY ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
+                i += 1
+                
+            elif (rom_hex[i] == 140):
+                print('STY ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
+                i += 2
 
             i += 1
