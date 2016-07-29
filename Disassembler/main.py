@@ -16,7 +16,7 @@ def main():
 
     # Create the Disassembler
     disassembler = Disassembler()
-    disassembler.process_hex(rom_hex)
+    disassembler.process_hex(rom_hex[32768:])
 
 if __name__ == '__main__':
     main()
