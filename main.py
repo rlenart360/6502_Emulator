@@ -12,11 +12,11 @@ def main():
 
     # Load the ROM
     with open(args.rom_path, 'rb') as rom:
-        lines = rom.readlines()
+        instructions = rom.read()
 
     # Create the CPU
     cpu = CPU()
-    cpu.process_instruction(lines[0][0:2])
+    cpu.process_instruction(instructions[0:3])
 
 
 if __name__ == '__main__':

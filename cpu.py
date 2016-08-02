@@ -1,3 +1,5 @@
+# TODO: Make a function that will call an error for invalid instructions.
+
 class CPU(object):
     def __init__(self):
         # The CPU Registers:
@@ -12,9 +14,29 @@ class CPU(object):
         self.SP = 0
         
         # TODO: Initialize memory.
+        
+        self.memory = []
+        for i in range(65536):
+        	self.memory.append(0)
 
-    def process_instruction(self, instruction: bytes):
+    def process_instruction(self, rom_hex: bytes):
     		
         # TODO: process the instruction
-        print(instruction)
+        i = 0
+        while i < len(rom_hex):
+        	
+        	if (rom_hex[i] = 105):
+        		self.A = self.A + rom_hex[i+1]
+        		if (self.A < 0):
+        			self.STATUS[7] = 1
+        		i+=1
+        		
+        	i+=1
+        		
+        
+        
+        
+        #Tests for my sanity
         print(self.A)
+        print(self.memory[0])
+        print(self.memory[65535])
