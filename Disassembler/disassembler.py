@@ -4,13 +4,9 @@ class Disassembler(object):
     def __init__(self):
         pass
 
-    def process_hex(self, rom_hex):
-        #print(rom_hex)
-        
+    def process_hex(self, rom_hex):     
+
         # Loop that will process the ROM
-        
-        # TODO: Find out where the actual game starts in the ROM and set *i* accordingly
-        
         i = 0
         while i < (len(rom_hex)):
 
