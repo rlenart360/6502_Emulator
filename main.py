@@ -13,10 +13,13 @@ def main():
     # Load the ROM
     with open(args.rom_path, 'rb') as rom:
         instructions = rom.read()
+        
+    # TEST INSTRUCTIONS
+    test = [105, 256]
 
     # Create the CPU
     cpu = CPU()
-    cpu.process_instruction(instructions[0:3])
+    cpu.process_instruction(test)
 
 
 if __name__ == '__main__':
