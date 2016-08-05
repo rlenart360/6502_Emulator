@@ -15,7 +15,7 @@ def main():
         instructions = rom.read()
         
     # TEST INSTRUCTIONS
-    test = [105, 256]
+    test = [101, 1]
 
     # Create the CPU
     cpu = CPU()

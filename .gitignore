@@ -48,3 +48,5 @@ Contact GitHub API Training Shop Blog About
 *.pyc
 
 *.xml
+
+.idea/NES_Emulator.iml
