@@ -27,7 +27,8 @@ class CPU(object):
         while i < len(rom_hex):
 
             # TODO: Figure out how to deal with the flags
-
+            # TEST
+    
             if (rom_hex[i] == 105):
 
                 self.A += rom_hex[i + 1]
@@ -49,8 +50,14 @@ class CPU(object):
                 i += 1
 
             elif (rom_hex[i] == 117):
-                print('ADC ' + '$' + print_bytes(rom_hex[i + 1]) + ',X')
-                i += 1
+            
+            	self.A += self.memory[rom_hex[i+1] + self.X]
+            	
+            	result = '{0:08b}'.format(self.A)
+            	if (len(result) > 8):
+            		self.A = int(result[1:], 2)
+            	
+            	i += 1
 
             elif (rom_hex[i] == 109):
                 print('ADC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
@@ -676,4 +683,9 @@ class CPU(object):
             i += 1
 
         # Tests for my sanity
-        print(self.A)
+        print("ACC = " + str(self.A))
+        print("X = " + str(self.X))
+        print("Y = " + str(self.Y))
+        for i in range(0,16):
+        	print(self.memory[i], end = " ")
+        print(" ")
