@@ -1,3 +1,3 @@
-# NES_Emulator
+# 6502_Emulator
 Attempt to emulate the Nintendo Entertainment System.
 For learning purposes only.
