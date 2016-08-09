@@ -13,8 +13,6 @@ class CPU(object):
         self.PC = 0
         self.SP = 0
 
-        # TODO: Initialize memory.
-
         self.memory = []
         for i in range(65536):
             self.memory.append(0)
