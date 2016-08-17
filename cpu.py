@@ -1,3 +1,5 @@
+import time
+from tkinter import *
 # TODO: Make a function that will call an error for invalid instructions.
 
 class CPU(object):
@@ -18,15 +20,24 @@ class CPU(object):
             self.memory.append(0)
 
     def process_instruction(self, rom_hex: bytes):
+    
+        root = Tk()
+        frame = Frame(root, height = 532, width = 532)
+        frame.pack()
+        screen = Canvas(frame, bg = "black")
+        screen.pack()
+        screen.place(x =10 , y =10 , height = 512, width = 512)
 
         # TODO: process the instruction
         # TODO: Use Program Counter instead of 'i'
         i = 0
         while i < len(rom_hex):
+            
+            self.memory[3] = 1
 
             # TODO: Figure out how to deal with the flags
             # TEST
-    
+
             if (rom_hex[i] == 105):
 
                 self.A += rom_hex[i + 1]
@@ -38,24 +49,24 @@ class CPU(object):
                 i += 1
 
             elif (rom_hex[i] == 101):
-            
+
                 self.A += self.memory[rom_hex[i+1]]
-                
+
                 result = '{0:08b}'.format(self.A)
                 if (len(result) > 8):
                     self.A = int(result[1:], 2)
-                
+
                 i += 1
 
             elif (rom_hex[i] == 117):
-            
-            	self.A += self.memory[rom_hex[i+1] + self.X]
-            	
-            	result = '{0:08b}'.format(self.A)
-            	if (len(result) > 8):
-            		self.A = int(result[1:], 2)
-            	
-            	i += 1
+
+                self.A += self.memory[rom_hex[i+1] + self.X]
+
+                result = '{0:08b}'.format(self.A)
+                if (len(result) > 8):
+                    self.A = int(result[1:], 2)
+
+                i += 1
 
             elif (rom_hex[i] == 109):
                 print('ADC ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
@@ -601,7 +612,7 @@ class CPU(object):
 
             # STA (Store Accumulator)
             elif (rom_hex[i] == 133):
-                # print('STA ' + '$' + print_bytes(rom_hex[i + 1]))
+                self.memory[rom_hex[i+1]] = self.A
                 i += 1
 
             elif (rom_hex[i] == 149):
@@ -677,6 +688,16 @@ class CPU(object):
             elif (rom_hex[i] == 140):
                 # print('STY ' + '$' + print_bytes(rom_hex[i + 2]) + print_bytes(rom_hex[i + 1]))
                 i += 2
+                
+            print("Updating screen...")
+            # NOTE: Use memory locations 0 - 1023 for now for testing
+            for y in range(32):
+                for x in range(32):
+                    if self.memory[x] != 0:
+                        screen.create_rectangle(0+(x*16), 0, 16+(x*16), 16, fill='red')
+                        root.update()
+                            
+            time.sleep(0.5)
 
             i += 1
 
@@ -684,6 +705,4 @@ class CPU(object):
         print("ACC = " + str(self.A))
         print("X = " + str(self.X))
         print("Y = " + str(self.Y))
-        for i in range(0,16):
-        	print(self.memory[i], end = " ")
-        print(" ")
+        root.mainloop()
